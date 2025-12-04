@@ -1,0 +1,103 @@
+{% extends "layouts/base.html" %}
+
+{% block content %} 
+<!-- Main -->
+<main class="container py-4 py-lg-5">
+  <div class="d-flex align-items-end justify-content-between mb-3 mb-lg-4">
+    <div>
+      <h1 class="h3 fw-bold mb-1">Accounts Dashboard</h1>
+      <p class="text-secondary mb-0">Users, roles, and recent activity.</p>
+    </div>
+    <span class="badge text-bg-light text-dark rounded-pill d-none d-md-inline" id="lastSync">—</span>
+  </div>
+
+  <!-- KPIs -->
+  <div class="row g-3 g-lg-4 mb-3 mb-lg-4">
+    <div class="col-12">
+      <div class="card-fmzb p-4 h-100">
+        <div class="text-uppercase small text-secondary mb-1">Total Users</div>
+        <div id="kpiTotal" class="kpi-value">—</div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card-fmzb p-4 h-100">
+        <div class="text-uppercase small text-secondary mb-1">Active</div>
+        <div id="kpiActive" class="kpi-value">—</div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card-fmzb p-4 h-100">
+        <div class="text-uppercase small text-secondary mb-1">Disabled</div>
+        <div id="kpiDisabled" class="kpi-value">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="card-fmzb p-4 mb-3 mb-lg-4">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h2 class="h5 fw-semibold mb-0">Users by Role</h2>
+      <div class="btn-group btn-group-sm" role="group">
+        <button class="btn btn-outline-fmzb">30d</button>
+        <button class="btn btn-outline-fmzb">90d</button>
+        <button class="btn btn-fmzb">YTD</button>
+      </div>
+    </div>
+    <div id="chartUsersByRole" class="w-100" role="img" aria-label="Users by role chart"></div>
+    <div class="small text-secondary mt-2">FusionCharts target: <code>#chartUsersByRole</code></div>
+  </div>
+
+  <!-- Chat + Table -->
+  <div class="row g-3 g-lg-4">
+    <div class="col-12">
+      <div class="card-fmzb p-4 h-100">
+        <div class="d-flex align-items-center justify-content-between">
+          <h3 class="h6 fw-semibold mb-0">AI Chat · Signup Trends</h3>
+          <span class="badge bg-secondary">UC6</span>
+        </div>
+        <form class="row g-2 mt-3" onsubmit="return false">
+          <div class="col-9">
+            <input id="chatPrompt" class="form-control input-fmzb" placeholder="e.g., New customers in last 30 days">
+          </div>
+          <div class="col-3 d-grid">
+            <button id="chatAskBtn" type="button" class="btn btn-fmzb">Ask</button>
+          </div>
+        </form>
+        <div id="chatResult" class="mt-3 p-3 border rounded small" style="border-color:var(--fmzb-border); background:#0f0f0f;">
+          <span class="text-secondary">Type a question above…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card-fmzb p-4 h-100">
+        <div class="d-flex align-items-center justify-content-between">
+          <h3 class="h6 fw-semibold mb-0">Recent Accounts</h3>
+          <span class="badge bg-secondary">UC2/UC5</span>
+        </div>
+        <div class="input-group input-group-sm mt-3 mb-2">
+          <span class="input-group-text" style="background:#0f0f0f; color:var(--fmzb-gray); border-color:var(--fmzb-border);">Filter</span>
+          <input id="userFilter" class="form-control input-fmzb" placeholder="role or status (merchant, active)">
+          <button class="btn btn-outline-fmzb" type="button">Apply</button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle table-fmzb mb-0">
+            <thead>
+              <tr><th>Email</th><th>Role</th><th>Status</th><th>Created</th></tr>
+            </thead>
+            <tbody id="tblRecentUsers">
+              <tr><td>merchant@fmzb.store</td><td>merchant</td><td><span class="badge badge-dark">active</span></td><td>2025-10-05</td></tr>
+              <tr><td>customer1@vt.edu</td><td>customer</td><td><span class="badge badge-dark">active</span></td><td>2025-10-11</td></tr>
+              <tr><td>olduser@demo.io</td><td>customer</td><td><span class="badge badge-disabled">disabled</span></td><td>2025-09-22</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end mt-2">
+          <a href="#" class="small text-decoration-none">View all users</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}

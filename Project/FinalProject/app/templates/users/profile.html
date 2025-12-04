@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - FMZB Hub</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/fmzb.css">
+</head>
+<body>
+<style>
+  :root{--fmzb-black:#0E0E0E;--fmzb-charcoal:#1B1B1B;--fmzb-white:#F9F9F9;--fmzb-gray:#D2D2D2;--fmzb-red:#E03E36;--fmzb-border:#2A2A2A;}
+  body{background:var(--fmzb-charcoal);color:var(--fmzb-white);}
+  .navbar-fmzb{background:var(--fmzb-black);border-bottom:1px solid var(--fmzb-border);}
+  .navbar-fmzb .navbar-brand{color:var(--fmzb-white)!important;font-weight:800;letter-spacing:.4px;text-transform:uppercase;}
+  .navbar-fmzb .nav-link{color:var(--fmzb-gray)!important;font-weight:600;}
+  .navbar-fmzb .nav-link:hover{color:var(--fmzb-white)!important;}
+  .card-fmzb{background:#121212;border:1px solid var(--fmzb-border);border-radius:1rem;}
+  .btn-fmzb{background:var(--fmzb-red);color:#fff;border:1px solid var(--fmzb-red);}
+  .btn-fmzb:hover{background:#ff5248;border-color:#ff5248;}
+  .btn-outline-danger{border-color:var(--fmzb-red);color:var(--fmzb-red);}
+  .btn-outline-danger:hover{background:var(--fmzb-red);border-color:var(--fmzb-red);color:#fff;}
+  .input-fmzb{background:#0f0f0f;color:var(--fmzb-white);border:1px solid var(--fmzb-border);}
+  .footer-fmzb{background:var(--fmzb-black);border-top:1px solid var(--fmzb-border);color:var(--fmzb-gray);}
+  .card-danger{background:#1a0a0a;border:1px solid #6b2c2c;border-radius:1rem;}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-fmzb sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/"><img src="/static/assets/img/fmzbimg.png" style="height:36px;" class="me-2">FMZB Hub</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto fw-semibold">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/users/profile">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="/users/dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 style="font-weight:800;">My Profile</h1>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for cat, msg in messages %}
+        <div class="alert alert-{{ cat }} alert-dismissible fade show mb-4">{{ msg }}<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card-fmzb p-4">
+        <h3 class="mb-4" style="font-weight:700;">Profile Information</h3>
+        <form method="POST">
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-control input-fmzb" name="first_name" value="{{ user.ContactFirstName or '' }}">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-control input-fmzb" name="last_name" value="{{ user.ContactLastName or '' }}">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-control input-fmzb" name="phone" value="{{ user.Phone or '' }}">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Role</label>
+              <input type="text" class="form-control input-fmzb" disabled value="{{ user.UserType.capitalize() or 'N/A' }}">
+            </div>
+            <div class="mb-3 col-md-12">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control input-fmzb" disabled value="{{ user.Email or '' }}">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Website</label>
+              <input type="url" class="form-control input-fmzb" name="website" value="{{ user.Website or '' }}">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Business Name</label>
+              <input type="text" class="form-control input-fmzb" name="business_name" value="{{ user.BusinessName or '' }}">
+            </div>
+          </div>
+
+          <hr style="border-color:var(--fmzb-border);margin:2rem 0;">
+          <h5 class="mb-3" style="font-weight:700;">Change Password (Optional)</h5>
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label class="form-label">New Password</label>
+              <input type="password" class="form-control input-fmzb" name="new_password" placeholder="Leave blank to keep current">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Confirm Password</label>
+              <input type="password" class="form-control input-fmzb" name="confirm_password" placeholder="Confirm new password">
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-fmzb btn-lg">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card-danger p-4">
+        <h3 class="mb-3" style="font-weight:700;color:#ff6b6b;">⚠️ Danger Zone</h3>
+        <p class="text-secondary mb-3">Deactivate your account. This is irreversible without support.</p>
+        <button class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#deactivateModal">Deactivate Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deactivateModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:#1a1a1a;border:1px solid var(--fmzb-border);">
+      <div class="modal-header border-bottom" style="border-color:var(--fmzb-border)!important;">
+        <h5 class="modal-title" style="color:#ff6b6b;font-weight:800;">⚠️ Confirm Deactivation</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-warning mb-2"><strong>This cannot be undone!</strong></p>
+        <p class="text-secondary">Your account will be disabled. Contact support to reactivate.</p>
+        <p class="text-secondary small mt-3">Email: <strong>{{ user.Email }}</strong></p>
+      </div>
+      <div class="modal-footer border-top" style="border-color:var(--fmzb-border)!important;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form method="POST" action="/users/deactivate" style="display:inline;">
+          <button type="submit" class="btn btn-danger">Deactivate</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-fmzb mt-4">
+  <div class="container py-3 d-flex justify-content-between align-items-center small">
+    <span>© FMZB Co. LLC</span>
+    <span class="d-flex gap-3">
+      <a href="#" class="text-decoration-none" style="color:var(--fmzb-red);">Privacy</a>
+      <a href="#" class="text-decoration-none" style="color:var(--fmzb-red);">Terms</a>
+    </span>
+  </div>
+</footer>
+
+<script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

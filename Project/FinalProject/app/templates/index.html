@@ -1,0 +1,105 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} FMZB Hub - Home {% endblock title %} 
+
+{% block stylesheets %}
+<style>
+  /* FORCE vertical layout - override all problematic CSS */
+  body {
+    background-image: none !important;
+    background-color: #1B1B1B !important;
+  }
+  
+  .simple-section {
+    padding: 60px 0;
+    display: block !important;
+    width: 100% !important;
+    position: relative !important;
+    clear: both !important;
+  }
+  
+  .simple-section img {
+    width: 100% !important;
+    max-width: 600px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto 30px !important;
+    border-radius: 8px;
+    position: relative !important;
+    float: none !important;
+  }
+  
+  .simple-text-box {
+    background-color: #f6e1c5;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto !important;
+    position: relative !important;
+    float: none !important;
+    width: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  
+  .simple-heading-upper {
+    display: block;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e6a756;
+    margin-bottom: 8px;
+  }
+  
+  .simple-heading-lower {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 100;
+    margin-bottom: 20px;
+  }
+  
+  .simple-text-box p {
+    color: #212529;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+  }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="simple-section">
+  <div class="container">
+    <img src="/static/img/intro.jpg" alt="FMZB">
+    
+    <div class="simple-text-box">
+      <h2>
+        <span class="simple-heading-upper">Modern Apparel</span>
+        <span class="simple-heading-lower">Curation & Education</span>
+      </h2>
+      <p>
+        FMZB is your platform for organizing, evaluating, and documenting clothing—especially streetwear, vintage, and specialty apparel. We help merchants manage inventory and provide customers with in-depth fashion education.
+      </p>
+      <a class="btn btn-primary btn-xl" href="/users/register">Get Started Today</a>
+    </div>
+  </div>
+</section>
+
+<section class="simple-section" style="background-color: rgba(230, 167, 86, 0.1);">
+  <div class="container">
+    <div class="simple-text-box">
+      <h2>
+        <span class="simple-heading-upper">Our Mission</span>
+        <span class="simple-heading-lower">Quality & Knowledge</span>
+      </h2>
+      <p>
+        Whether you're a merchant organizing your inventory or a customer learning about garment quality, FMZB provides the tools and education you need. From material analysis to authentication insights, we're dedicated to making apparel knowledge accessible to everyone.
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

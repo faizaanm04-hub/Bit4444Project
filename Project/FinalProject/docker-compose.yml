@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: fmzb-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: change-me
+      MYSQL_DATABASE: BIT4444_Group_Project
+      MYSQL_USER: fmzbuser
+      MYSQL_PASSWORD: change-me
+    ports:
+      - "3309:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
+    networks:
+      - fmzb-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  web:
+    build: .
+    container_name: fmzb-web
+    restart: unless-stopped
+    ports:
+      - "5005:5005"
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=development
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - fmzb-network
+
+volumes:
+  mysql_data:
+
+networks:
+  fmzb-network:
+    driver: bridge

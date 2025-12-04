@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register - FMZB Hub</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/fmzb.css">
+</head>
+<body>
+<style>
+  :root{--fmzb-black:#0E0E0E;--fmzb-charcoal:#1B1B1B;--fmzb-white:#F9F9F9;--fmzb-gray:#D2D2D2;--fmzb-red:#E03E36;--fmzb-border:#2A2A2A;}
+  body{background:var(--fmzb-charcoal);color:var(--fmzb-white);}
+  .navbar-fmzb{background:var(--fmzb-black);border-bottom:1px solid var(--fmzb-border);}
+  .navbar-fmzb .navbar-brand{color:var(--fmzb-white)!important;font-weight:800;letter-spacing:.4px;text-transform:uppercase;}
+  .navbar-fmzb .nav-link{color:var(--fmzb-gray)!important;font-weight:600;}
+  .navbar-fmzb .nav-link:hover{color:var(--fmzb-white)!important;}
+  .card-fmzb{background:#121212;border:1px solid var(--fmzb-border);border-radius:1rem;}
+  .btn-fmzb{background:var(--fmzb-red);color:#fff;border:1px solid var(--fmzb-red);}
+  .btn-fmzb:hover{background:#ff5248;border-color:#ff5248;}
+  .input-fmzb{background:#0f0f0f;color:var(--fmzb-white);border:1px solid var(--fmzb-border);}
+  .footer-fmzb{background:var(--fmzb-black);border-top:1px solid var(--fmzb-border);color:var(--fmzb-gray);}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-fmzb sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/"><img src="/static/assets/img/fmzbimg.png" style="height:36px;" class="me-2">FMZB Hub</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto fw-semibold">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/users/register">Register</a></li>
+        <li class="nav-item"><a class="nav-link" href="/users/login">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card-fmzb p-4">
+        <h2 class="mb-4" style="font-weight:800;">Create Account</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for cat, msg in messages %}
+              <div class="alert alert-{{ cat }} alert-dismissible fade show">{{ msg }}<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+          <div class="row">
+            <div class="mb-3 col-md-12">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control input-fmzb" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Role</label>
+              <select class="form-select input-fmzb" name="user_type" required>
+                <option value="">Select...</option>
+                <option value="customer">Customer</option>
+                <option value="merchant">Merchant</option>
+              </select>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-control input-fmzb" name="first_name" required>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-control input-fmzb" name="last_name" required>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-control input-fmzb" name="phone" placeholder="Optional">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control input-fmzb" name="password" placeholder="8+ chars, 1 upper, 1 lower, 1 digit, 1 special" required>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Confirm Password</label>
+              <input type="password" class="form-control input-fmzb" name="confirm_password" required>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Website (Merchant)</label>
+              <input type="url" class="form-control input-fmzb" name="website" placeholder="Optional">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Business Name</label>
+              <input type="text" class="form-control input-fmzb" name="business_name" placeholder="Optional">
+            </div>
+          </div>
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-fmzb btn-lg">Create Account</button>
+          </div>
+          <div class="text-center mt-3">
+            <p class="text-secondary">Have an account? <a href="/users/login" style="color:var(--fmzb-red);text-decoration:none;font-weight:600;">Login</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-fmzb mt-4">
+  <div class="container py-3 d-flex justify-content-between align-items-center small">
+    <span>© FMZB Co. LLC</span>
+    <span class="d-flex gap-3">
+      <a href="#" class="text-decoration-none" style="color:var(--fmzb-red);">Privacy</a>
+      <a href="#" class="text-decoration-none" style="color:var(--fmzb-red);">Terms</a>
+    </span>
+  </div>
+</footer>
+
+<script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+:root {
+  --fmzb-black: #0E0E0E;
+  --fmzb-charcoal: #1B1B1B;
+  --fmzb-white: #F9F9F9;
+  --fmzb-gray: #D2D2D2;
+  --fmzb-red: #E03E36;
+  --fmzb-border: #2A2A2A;
+}
+
+/* Bootstrap global tokens (dark mode) */
+
+body {
+  background: var(--fmzb-charcoal);
+  color: var(--fmzb-white);
+}
+
+a, .link {
+  color: var(--fmzb-red);
+}
+
+a:hover {
+  color: #ff5248;
+}
+
+.navbar-fmzb {
+  background: var(--fmzb-black);
+  border-bottom: 1px solid var(--fmzb-border);
+}
+
+.navbar-fmzb .navbar-brand {
+  color: var(--fmzb-white)!important;
+  font-weight: 800;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+
+.navbar-fmzb .nav-link {
+  color: var(--fmzb-gray)!important;
+  font-weight: 600;
+}
+
+.navbar-fmzb .nav-link.active, .navbar-fmzb .nav-link:hover {
+  color: var(--fmzb-white)!important;
+}
+
+.card-fmzb {
+  background: #121212;
+  border: 1px solid var(--fmzb-border);
+  border-radius: 1rem;
+}
+
+.card-fmzb .card-header {
+  border-bottom: 1px solid var(--fmzb-border);
+  background: transparent;
+  color: var(--fmzb-gray);
+}
+
+.kpi-value {
+  font-weight: 800;
+  line-height: 1;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.btn-fmzb {
+  background: var(--fmzb-red);
+  color: #fff;
+  border: 1px solid var(--fmzb-red);
+}
+
+.btn-fmzb:hover {
+  background: #ff5248;
+  border-color: #ff5248;
+  color: #fff;
+}
+
+.btn-outline-fmzb {
+  border: 1px solid var(--fmzb-red);
+  color: var(--fmzb-red);
+  background: transparent;
+}
+
+.btn-outline-fmzb:hover {
+  background: var(--fmzb-red);
+  color: #fff;
+}
+
+.input-fmzb, .form-select {
+  background: #0f0f0f;
+  color: var(--fmzb-white);
+  border: 1px solid var(--fmzb-border);
+}
+
+.input-fmzb::placeholder {
+  color: #8b8b8b;
+}
+
+.table-fmzb {
+  --bs-table-bg: #0f0f0f;
+  --bs-table-color: var(--fmzb-white);
+  --bs-table-border-color: var(--fmzb-border);
+}
+
+.table-fmzb thead {
+  background: #101010;
+  color: var(--fmzb-gray);
+}
+
+.badge-dark {
+  background: #242424;
+  color: #fff;
+}
+
+.badge-disabled {
+  background: #3a3a3a;
+  color: #bbb;
+}
+
+.footer-fmzb {
+  background: var(--fmzb-black);
+  border-top: 1px solid var(--fmzb-border);
+  color: var(--fmzb-gray);
+}
+
+.brand-logo {
+  height: 32px;
+  width: auto;
+  border-radius: 50%;
+  border: 1px solid #2A2A2A;
+  display: block;
+}
+
+@media (max-width:991px) {
+  .brand-logo {
+    height: 28px;
+  }
+}
+
